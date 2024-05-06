@@ -99,7 +99,9 @@ Da vedere
 
 ## Scripts
 
-[Scripts vecchi](https://github.com/Sapienza-Technology/Academy/tree/old/scripts)
+- [Scripts vecchi](https://github.com/Sapienza-Technology/Academy/tree/old/scripts): Collezione sparsa e incompleta. Alcuni usano ROS tramite pyros.
 
-[Prova route](https://github.com/Sapienza-Technology/Academy/blob/old/testroute.py)
+- [Prova route](https://github.com/Sapienza-Technology/Academy/blob/old/testroute.py): Script nabbo per far controllare i motori.
+
+- [Prova server/client](prova): Per mettere sul raspberry lo script `rover.py` che fa da server e connettersi a quest'ultimo dal pc tramite lo script `controller.py`
 
