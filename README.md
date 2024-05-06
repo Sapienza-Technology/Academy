@@ -1,5 +1,18 @@
 # UOLLI + IV
 
+## Roadmap
+
+- [ ] Farlo funzionare :p
+
+- [ ] Sensori vari (ultrasuoni, ...)
+
+- [ ] Navigazione manuale con tastiera/joystick
+
+- [ ] Navigazione autonoma
+
+- [ ] Integrazione con Jetson/ROS2
+
+
 ## Componenti
 
 ### L298N
@@ -51,6 +64,37 @@ Possibile modello [Futaba S3001](https://futabausa.com/product/s3001/)
 #### IV
 
 <img title="IV" src="assets/IV-profilo.jpg" width="40%">
+
+
+## Software
+
+### RPi.GPIO
+
+> This package provides a Python module to control the GPIO on a Raspberry Pi.
+
+> Note that the current release does not support SPI, I2C, hardware PWM or serial functionality on the RPi yet. Although hardware PWM is not available yet, software PWM is available to use on all channels.
+
+[Introduzione](https://learn.sparkfun.com/tutorials/raspberry-gpio/python-rpigpio-api)
+
+[Sourceforge](https://sourceforge.net/projects/raspberry-gpio-python/)
+
+[Pypi](https://pypi.org/project/RPi.GPIO/)
+
+### gpiozero
+
+> A simple interface to GPIO devices with Raspberry Pi
+
+[Documentazione](https://gpiozero.readthedocs.io/en/latest/)
+
+[Github](https://github.com/gpiozero/gpiozero)
+
+[Introduzione](https://www.raspberrypi.com/news/gpio-zero-a-friendly-python-api-for-physical-computing/)
+
+[Pypi](https://pypi.org/project/gpiozero/)
+
+### ROS2
+
+Da vedere
 
 
 ## Scripts
