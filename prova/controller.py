@@ -41,6 +41,7 @@ def make_message():
     global stato
     while True:
         c = getch()
+        print(c)
 
         if c == '\x1b' or c == '\x03':
             return None
@@ -48,27 +49,27 @@ def make_message():
         if c == 'w' and stato != Direzione.AVANTI:
             print("Avanti")
             stato = Direzione.AVANTI
-            return stato.value.to_bytes()
+            return stato.value.to_bytes(1, "big")
 
         if c == 's' and stato != Direzione.INDIETRO:
             print("Indietro")
             stato = Direzione.INDIETRO
-            return stato.value.to_bytes()
+            return stato.value.to_bytes(1, "big")
 
         if c == 'a' and stato != Direzione.SINISTRA:
             print("Gira a sinistra")
             stato = Direzione.SINISTRA
-            return stato.value.to_bytes()
+            return stato.value.to_bytes(1, "big")
 
         if c == 'd' and stato != Direzione.DESTRA:
             print("Gira a destra")
             stato = Direzione.DESTRA
-            return stato.value.to_bytes()
+            return stato.value.to_bytes(1, "big")
 
         if c.isspace():
             print("Stop")
             stato = Direzione.STOP
-            return stato.value.to_bytes()
+            return stato.value.to_bytes(1, "big")
 
         if c not in ['w','a','s','d']:
             print("Usa wasd...")

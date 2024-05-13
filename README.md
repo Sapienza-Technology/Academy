@@ -2,7 +2,9 @@
 
 ## Roadmap
 
-- [ ] Farlo funzionare :p
+- [x] Farlo funzionare :p
+
+- [ ] Aggiungere sterzo
 
 - [ ] Sensori vari (ultrasuoni, ...)
 
@@ -12,32 +14,39 @@
 
 - [ ] Integrazione con Jetson/ROS2
 
-
 ## Componenti
 
-### L298N
+### Schede motori
 
 <img title="l298" src="assets/l298-motor-driver-board.jpg" width="40%"> <img title="pins" src="assets/l298n-pinout.webp" width="40%">
 
-Schede controllo motori usati per IV. (2x)
+Schede controllo motori L298N usati per IV. (2x)
 
 [Datasheet](assets/L298N_Motor_Driver.pdf)
 
 [IC Datasheet](assets/l298-datasheet.pdf)
 
-
 ### DC step down
 
-Da 12/24V a 5V, max 50W.
-Usato per alimentare il Raspberry di IV.
+<img title="LM2596" src="assets/stepdown.jpeg" width="40%"> <img title="LM2596" src="assets/lm2596.jpg" width="40%">
 
-Modello da identificare.
+LM2596 con display.
 
+Voltaggio in ingresso: da 4V a 40V
+Voltaggio in uscita: da 1.3V a 37V (almeno 1V maggiore dell'ingresso)
+Corrente in uscita: 2A (3A picco massimo)
+
+Il voltaggio di uscita si regola con il potenziometro (la vitarella).
+
+Il display mostra il voltaggio in uscita e si spegne premendo il bottone (per ridurre il consumo).
+
+Al momento converte dai 12V delle batterie ai 5V per il raspberry.
+
+[Datasheet](assets/lm2596-datasheet.pdf)
 
 ### Batteria 12V
 
-Da prendere
-
+Batteria LiPo da 12V.
 
 ### Motori route
 
@@ -45,15 +54,11 @@ Alimentati dalla scheda motore con 12V. (4x)
 
 Quelli di UOLLI sembrano migliori di quelli di IV.
 
-Non identificati
-
-
 ### Motori servo
 
-Usati dallo sterzo di UOLLI. (4x)
+Parallax Standard Servo, usati dallo sterzo di UOLLI. (4x)
 
-Possibile modello [Futaba S3001](https://futabausa.com/product/s3001/)
-
+[Datasheet](assets/parallax-datasheet.pdf)
 
 ## Telai
 
@@ -65,6 +70,9 @@ Possibile modello [Futaba S3001](https://futabausa.com/product/s3001/)
 
 <img title="IV" src="assets/IV-profilo.jpg" width="40%">
 
+## Cablaggio
+
+<img title="cavi" src="assets/wiring.jpeg" width="40%">
 
 ## Software
 
@@ -96,7 +104,6 @@ Possibile modello [Futaba S3001](https://futabausa.com/product/s3001/)
 
 Da vedere
 
-
 ## Scripts
 
 - [Scripts vecchi](https://github.com/Sapienza-Technology/Academy/tree/old/scripts): Collezione sparsa e incompleta. Alcuni usano ROS tramite pyros.
@@ -104,4 +111,3 @@ Da vedere
 - [Prova route](https://github.com/Sapienza-Technology/Academy/blob/old/testroute.py): Script nabbo per far controllare i motori.
 
 - [Prova server/client](prova): Per mettere sul raspberry lo script `rover.py` che fa da server e connettersi a quest'ultimo dal pc tramite lo script `controller.py`
-
