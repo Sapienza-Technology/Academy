@@ -9,10 +9,24 @@ PORT = 8008
 # NOTA: Mettere l'ip del raspberry
 HOST = "127.0.0.1"
 
+stato = None
+
+class Direzione(enum.Enum):
+    STOP = 0
+    AVANTI = 1
+    INDIETRO = 2
+    SINISTRA = 3
+    DESTRA = 4
+
+
 try:
     import msvcrt
+    import time
+
     def getch():
-        return msvcrt.getch()
+        while not msvcrt.kbhit():
+            time.sleep(0.01)
+        return msvcrt.getch().decode("utf-8")
 
 except ImportError:
     import sys, tty, termios
@@ -28,20 +42,10 @@ except ImportError:
         return ch
 
 
-class Direzione(enum.Enum):
-    STOP = 0
-    AVANTI = 1
-    INDIETRO = 2
-    SINISTRA = 3
-    DESTRA = 4
-
-stato = None
-
 def make_message():
     global stato
     while True:
         c = getch()
-        print(c)
 
         if c == '\x1b' or c == '\x03':
             return None
@@ -72,16 +76,29 @@ def make_message():
             return stato.value.to_bytes(1, "big")
 
         if c not in ['w','a','s','d']:
-            print("Usa wasd...")
+            print("Usa wasd o spazio...")
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-    sock.connect((HOST, PORT))
-    print("Connesso", HOST, PORT)
+def client():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.connect((HOST, PORT))
+        print("Connesso a", HOST, PORT)
 
-    while True:
-        message = make_message()
-        if message == None:
-            break
-        sock.sendall(message)
+        while True:
+            message = make_message()
+            if message == None:
+                break
+            sock.sendall(message)
 
-    print("Uscito dal controller")
+        print("Uscito dal controller")
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--port", help="Seleziona porta remota", type=int, default=PORT)
+    parser.add_argument("--host", help="Seleziona host remoto", type=str, default=HOST)
+    args = parser.parse_args()
+
+    PORT = args.port
+    HOST= args.host
+
+    client()
